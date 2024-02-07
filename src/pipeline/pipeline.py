@@ -142,12 +142,49 @@ class BigBiGANInference:
         self.dataloader = dataloader
         self.config = config
 
+    #Original
+    #def inference(self):
+    #    for step, (org_img, y) in tqdm(enumerate(self.dataloader)):
+    #        latent = self.encode(org_img)
+    #        reconstructed_img = self.generate(y, latent)
+    #        self.save_img(org_img, reconstructed_img)
+    #        break
     def inference(self):
         for step, (org_img, y) in tqdm(enumerate(self.dataloader)):
+            # Move input data to the same device as the model
+            org_img = org_img.to(self.config.device)
+            y = y.to(self.config.device)
+
             latent = self.encode(org_img)
             reconstructed_img = self.generate(y, latent)
             self.save_img(org_img, reconstructed_img)
             break
+    def encode_batch(self, batch):
+        latent_array = []
+        for step, (org_img, y) in tqdm(enumerate(batch)):
+            latent = self.encode(org_img)
+            latent_array.append(latent)
+        print("Latent array length: ", len(latent_array)) 
+
+
+    def encode_sample(self, no_samples):
+        #encode no_samples images
+        lante_array = []
+        for step, (org_img, y) in tqdm(enumerate(self.dataloader)):
+            if step == no_samples:
+                break
+            org_img = org_img.to(self.config.device)
+            y = y.to(self.config.device)
+            class_mapping = {0: '0', 1: '1', 2: '2', 3: '3', 4: '4', 5: '5', 6: '6', 7: '7', 8: '8', 9: '9'}
+            string_labels = [class_mapping[label.item()] for label in y]
+            print("String labels: ", string_labels)
+            #append tuple with latent and label each item with labels
+            # Layout ["Latent": tensor, "Label": string]
+            print("Img shape: ", org_img.shape)
+            print("Img dtype: ", org_img.dtype)
+            lante_array.append(self.encode(org_img))
+        return lante_array
+        
 
     def encode(self, img):
         z_img = self.model.generate_latent(img=img)

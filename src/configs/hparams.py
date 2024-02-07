@@ -6,10 +6,11 @@ hparams = {
     "save_img_count": 12,
     "real_imgs_save_path": "./data/{ds_name}/{model_architecture}/real_img/{hparams}",
     "gen_imgs_save_path": "./data/{ds_name}/{model_architecture}/gen_img/{hparams}",
+    "rec_imgs_save_path": "./data/{ds_name}/{model_architecture}/rec_img/{hparams}",
     "logging_path": "./data/{ds_name}/{model_architecture}/logs/{name}",
     "save_model_path": "./data/{ds_name}/{model_architecture}/checkpoints/{hparams}",
     "save_name": "gan",
-    "save_model_interval": 50,
+    "save_model_interval": 5,
 
     # hparams
     "clf_lr": 2e-4,
