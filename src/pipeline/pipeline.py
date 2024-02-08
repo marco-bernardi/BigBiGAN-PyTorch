@@ -143,22 +143,45 @@ class BigBiGANInference:
         self.config = config
 
     #Original
-    #def inference(self):
-    #    for step, (org_img, y) in tqdm(enumerate(self.dataloader)):
-    #        latent = self.encode(org_img)
-    #        reconstructed_img = self.generate(y, latent)
-    #        self.save_img(org_img, reconstructed_img)
-    #        break
     def inference(self):
         for step, (org_img, y) in tqdm(enumerate(self.dataloader)):
-            # Move input data to the same device as the model
             org_img = org_img.to(self.config.device)
             y = y.to(self.config.device)
-
             latent = self.encode(org_img)
             reconstructed_img = self.generate(y, latent)
             self.save_img(org_img, reconstructed_img)
             break
+    def inference_my(self,mydataloader):
+        for step, (org_img, y) in tqdm(enumerate(mydataloader)):
+            org_img = org_img.to(self.config.device)
+            y = y.to(self.config.device)
+            latent = self.encode(org_img)
+            reconstructed_img = self.generate(y, latent)
+            #PLOT ORIGINAL AND RECONSTRUCTED IMAGE
+            plt.figure()
+            plt.imshow(org_img[0].detach().cpu().numpy().transpose(1, 2, 0))
+            plt.title("Original Image")
+            plt.show()
+            plt.figure()
+            img = reconstructed_img[0].detach().cpu()[:self.config.save_img_count, ...]
+            img = np.transpose(vutils.make_grid(
+                img, padding=2, nrow=self.config.img_rows, normalize=True), (1, 2, 0))
+            plt.imshow(img)
+            plt.title("Reconstructed Image")
+
+            #self.save_img(org_img, reconstructed_img)
+            break
+    #def inference(self):
+    #    for step, (org_img, y) in tqdm(enumerate(self.dataloader)):
+    #        # Move input data to the same device as the model
+    #        org_img = org_img.to(self.config.device)
+    #        y = y.to(self.config.device)
+#
+    #        latent = self.encode(org_img)
+    #        reconstructed_img = self.generate(y, latent)
+    #        self.save_img(org_img, reconstructed_img)
+    #        break
+
     def encode_batch(self, batch):
         latent_array = []
         for step, (org_img, y) in tqdm(enumerate(batch)):
@@ -196,10 +219,13 @@ class BigBiGANInference:
 
     def save_img(self, org_img, reconstructed_img):
         for name, img in [("org_img", org_img), ("reconstructed_img", reconstructed_img)]:
-            img = img.detach().cpu()[:self.config.save_img_count, ...]
+            img = img[0].detach().cpu()[:self.config.save_img_count, ...]
             img = np.transpose(vutils.make_grid(
                 img, padding=2, nrow=self.config.img_rows, normalize=True), (1, 2, 0))
+            #add label to image
+            plt.title(name)
             plt.imshow(img)
+
 
             file_name = f"{name}.png"
             gen_imgs_save_folder = Path(self.config.rec_imgs_save_path.format(

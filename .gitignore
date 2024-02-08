@@ -1,0 +1,26 @@
+
+data/MNIST/bigbigan/checkpoints/checkpoint_10.pth
+data/MNIST/bigbigan/checkpoints/checkpoint_15.pth
+data/MNIST/bigbigan/checkpoints/checkpoint_2.pth
+data/MNIST/bigbigan/checkpoints/checkpoint_20.pth
+data/MNIST/bigbigan/checkpoints/checkpoint_25.pth
+data/MNIST/bigbigan/checkpoints/checkpoint_3.pth
+data/MNIST/bigbigan/checkpoints/checkpoint_35.pth
+data/MNIST/bigbigan/checkpoints/checkpoint_4.pth
+data/MNIST/bigbigan/checkpoints/checkpoint_5.pth
+data/FMNIST/bigbigan/checkpoints/checkpoint_10.pth
+data/FMNIST/bigbigan/checkpoints/checkpoint_15.pth
+data/FMNIST/bigbigan/checkpoints/checkpoint_25.pth
+data/FMNIST/bigbigan/checkpoints/checkpoint_30.pth
+data/FMNIST/bigbigan/checkpoints/checkpoint_35.pth
+
+#ignore all files that contain -ubyte
+*-ubyte
+*-ubyte.gz
+
+#ignore all pychace folders
+data/FMNIST/bigbigan/checkpoints/checkpoint_40.pth
+data/FMNIST/bigbigan/checkpoints/checkpoint_45.pth
+data/FMNIST/bigbigan/checkpoints/checkpoint_5.pth
+data/FMNIST/bigbigan/checkpoints/checkpoint_50.pth
+*.png
