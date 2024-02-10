@@ -22,8 +22,12 @@ args = parser.parse_args()
 
 
 def run_experiments():
+    print("Running experiments")
     for hparams_overwrite_list, seed in itertools.product(EXP_HPARAMS["params"], EXP_HPARAMS["seeds"]):
         config = training_utils.get_config(args.dataset)
+        print(config.latent_dim)
+        config["latent_dim"] = 4
+        print("New latent dim: ", config.latent_dim)
         hparams_str = ""
         for k, v in hparams_overwrite_list.items():
             config[k] = v
@@ -32,7 +36,7 @@ def run_experiments():
         config["hparams_str"] = hparams_str.strip("_")
         config["seed"] = seed
         run_experiment(config)
-
+    
 
 def run_experiment(config):
     training_utils.set_random_seed(seed=config.seed, device=config.device)

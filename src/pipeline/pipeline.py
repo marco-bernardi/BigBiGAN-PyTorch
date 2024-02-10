@@ -148,9 +148,21 @@ class BigBiGANInference:
             org_img = org_img.to(self.config.device)
             y = y.to(self.config.device)
             latent = self.encode(org_img)
+            print("Latent shape: ", latent.shape)
             reconstructed_img = self.generate(y, latent)
             self.save_img(org_img, reconstructed_img)
             break
+
+    def inference_fromdt(self, specific_dataloader):
+        for step, (org_img, y) in tqdm(enumerate(specific_dataloader)):
+            org_img = org_img.to(self.config.device)
+            y = y.to(self.config.device)
+            latent = self.encode(org_img)
+            print("Latent shape: ", latent.shape)
+            reconstructed_img = self.generate(y, latent)
+            self.save_img(org_img, reconstructed_img)
+            break
+
     def inference_my(self,mydataloader):
         for step, (org_img, y) in tqdm(enumerate(mydataloader)):
             org_img = org_img.to(self.config.device)
@@ -225,8 +237,6 @@ class BigBiGANInference:
             #add label to image
             plt.title(name)
             plt.imshow(img)
-
-
             file_name = f"{name}.png"
             gen_imgs_save_folder = Path(self.config.rec_imgs_save_path.format(
                 ds_name=self.config.ds_name,
