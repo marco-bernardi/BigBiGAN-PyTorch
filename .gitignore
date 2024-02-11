@@ -19,7 +19,7 @@ data/FMNIST/bigbigan/checkpoints/checkpoint_35.pth
 *-ubyte.gz
 
 #ignore all pychace folders
-data/FMNIST/bigbigan/checkpoints/checkpoint_40.pth
+data/FMNIST/bigbigan/checkpoints/checkpoint_20.pth
 data/FMNIST/bigbigan/checkpoints/checkpoint_45.pth
 data/FMNIST/bigbigan/checkpoints/checkpoint_5.pth
 data/FMNIST/bigbigan/checkpoints/checkpoint_50.pth
@@ -81,3 +81,4 @@ data/CIFAR10/bigbigan/logs/events.out.tfevents.1707555024.DESKTOP-PI8NTSF.19964.
 data/CIFAR10/bigbigan/logs/events.out.tfevents.1707507138.DESKTOP-PI8NTSF.324.0
 data/CIFAR10/bigbigan/checkpoints/checkpoint_5.pth
 data/CIFAR10/bigbigan/checkpoints/checkpoint_10.pth
+data/CIFAR10/bigbigan/checkpoints/checkpoint_15.pth
