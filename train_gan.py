@@ -26,7 +26,6 @@ def run_experiments():
     for hparams_overwrite_list, seed in itertools.product(EXP_HPARAMS["params"], EXP_HPARAMS["seeds"]):
         config = training_utils.get_config(args.dataset)
         print(config.latent_dim)
-        config["latent_dim"] = 4
         print("New latent dim: ", config.latent_dim)
         hparams_str = ""
         for k, v in hparams_overwrite_list.items():
