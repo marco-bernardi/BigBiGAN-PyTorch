@@ -23,7 +23,13 @@ data/FMNIST/bigbigan/checkpoints/checkpoint_20.pth
 data/FMNIST/bigbigan/checkpoints/checkpoint_45.pth
 data/FMNIST/bigbigan/checkpoints/checkpoint_5.pth
 data/FMNIST/bigbigan/checkpoints/checkpoint_50.pth
-*.png
+
+#ignore all png files in this directory
+data/CIFAR10/bigbigan/gen_img/*.png
+data/FMNIST/bigbigan/gen_img/*.png
+data/MNIST_100DIM/bigbigan/gen_img/*.png
+data/MNIST/bigbigan/rec_img/*.png
+./*.png
 data/MNIST_100DIM/bigbigan/logs/events.out.tfevents.1707259675.DESKTOP-PI8NTSF.213.0
 data/MNIST_100DIM/bigbigan/logs/events.out.tfevents.1707259135.DESKTOP-PI8NTSF.155.0
 data/MNIST_100DIM/bigbigan/logs/events.out.tfevents.1707258903.DESKTOP-PI8NTSF.110.0
@@ -70,8 +76,6 @@ data/MNIST/bigbigan/gen_img/ep0_step0.png
 data/MNIST/bigbigan/checkpoints/checkpoint_40.pth
 data/MNIST/bigbigan/checkpoints/checkpoint_30.pth
 data/MNIST/bigbigan/checkpoints/checkpoint_1.pth
-data/FMNIST/bigbigan/logs/events.out.tfevents.1707489070.DESKTOP-PI8NTSF.279.0
-data/FMNIST/bigbigan/logs/events.out.tfevents.1707486460.DESKTOP-PI8NTSF.5472.0
 data/FMNIST/bigbigan/logs/events.out.tfevents.1707385318.DESKTOP-PI8NTSF.40.0
 data/FMNIST/bigbigan/logs/events.out.tfevents.1707253299.DESKTOP-PI8NTSF.202.0
 data/FMNIST/bigbigan/gen_img/ep0_step0_reconstructed.png
@@ -82,3 +86,17 @@ data/CIFAR10/bigbigan/logs/events.out.tfevents.1707507138.DESKTOP-PI8NTSF.324.0
 data/CIFAR10/bigbigan/checkpoints/checkpoint_5.pth
 data/CIFAR10/bigbigan/checkpoints/checkpoint_10.pth
 data/CIFAR10/bigbigan/checkpoints/checkpoint_15.pth
+tse_fmnist_perp5_ldim4.png
+tse_fmnist_perp50_ldim4.png
+tse_fmnist_perp20_ldim4.png
+tse_fmnist_perp10_ldim4.png
+tse_fmnist_perp100_ldim4.png
+src/pipeline/__pycache__/pipeline.cpython-310.pyc
+perp5_mnist_4dim.png
+perp50_mnist_4dim.png
+perp30_mnist_4dim.png
+output.png
+data/FMNIST/bigbigan/rec_img/org_img.png
+data/FMNIST/bigbigan/rec_img/reconstructed_img.png
+data/MNIST_100DIM/bigbigan/rec_img/org_img.png
+data/MNIST_100DIM/bigbigan/rec_img/reconstructed_img.png

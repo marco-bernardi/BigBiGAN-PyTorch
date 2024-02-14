@@ -4,6 +4,10 @@ import torch
 import torchvision.utils as vutils
 from tqdm import tqdm
 from pathlib import Path
+from datetime import datetime
+from PIL import Image
+from torchvision import transforms
+import os
 
 from src.data_processing import data_loading
 from src.pipeline import logger as training_logger
@@ -183,16 +187,39 @@ class BigBiGANInference:
 
             #self.save_img(org_img, reconstructed_img)
             break
-    #def inference(self):
-    #    for step, (org_img, y) in tqdm(enumerate(self.dataloader)):
-    #        # Move input data to the same device as the model
-    #        org_img = org_img.to(self.config.device)
-    #        y = y.to(self.config.device)
-#
-    #        latent = self.encode(org_img)
-    #        reconstructed_img = self.generate(y, latent)
-    #        self.save_img(org_img, reconstructed_img)
-    #        break
+    
+    def inference_save(self, mydataloader, label):
+        # Method to save the input img and the output img
+        # Input: ./data/FMNIST/input/{timestamp}.png
+        # Output: ./data/FMNIST/output/{timestamp}.png
+        for step, (org_img, y) in tqdm(enumerate(mydataloader)):
+            org_img = org_img.to(self.config.device)
+            y = y.to(self.config.device)
+            latent = self.encode(org_img)
+            reconstructed_img = self.generate(y, latent)
+            timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
+            
+            input_dir = "./data/FMNIST/" +  label + "/input/"
+            output_dir = "./data/FMNIST/"+ label +"/output/"
+
+            if not os.path.exists(input_dir):
+                os.makedirs(input_dir)
+            if not os.path.exists(output_dir):
+                os.makedirs(output_dir)
+            #save imgs
+
+            input_img = (org_img[0].clamp(-1, 1) + 1) / 2.0
+            input_pil = transforms.ToPILImage()(input_img[0].detach().cpu())
+            input_pil = input_pil.convert("L")
+            input_pil.save(input_dir + timestamp + ".png")
+
+            output_img = (reconstructed_img[0].clamp(-1, 1) + 1) / 2.0
+            output_pil = transforms.ToPILImage()(output_img[0].detach().cpu())
+            output_pil = output_pil.convert("L")
+            output_pil.save(output_dir + timestamp + ".png")
+
+
+
 
     def encode_batch(self, batch):
         latent_array = []
