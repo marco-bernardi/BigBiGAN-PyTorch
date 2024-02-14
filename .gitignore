@@ -10,7 +10,6 @@ data/MNIST/bigbigan/checkpoints/checkpoint_4.pth
 data/MNIST/bigbigan/checkpoints/checkpoint_5.pth
 data/FMNIST/bigbigan/checkpoints/checkpoint_10.pth
 data/FMNIST/bigbigan/checkpoints/checkpoint_15.pth
-data/FMNIST/bigbigan/checkpoints/checkpoint_25.pth
 data/FMNIST/bigbigan/checkpoints/checkpoint_30.pth
 data/FMNIST/bigbigan/checkpoints/checkpoint_35.pth
 
@@ -100,3 +99,6 @@ data/FMNIST/bigbigan/rec_img/org_img.png
 data/FMNIST/bigbigan/rec_img/reconstructed_img.png
 data/MNIST_100DIM/bigbigan/rec_img/org_img.png
 data/MNIST_100DIM/bigbigan/rec_img/reconstructed_img.png
+*.pyc
+*.pyc
+src/pipeline/__pycache__/pipeline.cpython-310.pyc
